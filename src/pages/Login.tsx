@@ -1,29 +1,24 @@
 import { useState } from 'react'
-import { useUser } from '../hooks/useUser'
+import { useApiKey } from '../hooks/useApiKey'
 import { useNavigate } from 'react-router';
 
 const PageLogin = () => {
   const navigate = useNavigate();
 
-  const { user, setUser } = useUser();
-  const [key, setKey] = useState<string | undefined>(undefined);
+  const { apiKey, setApiKey } = useApiKey();
+  const [key, setKey] = useState<string>(apiKey);
 
   const onSubmit = () => {
-    if (key === undefined) {
-      alert('no key');
-      return;
-    }
+    setApiKey(key);
 
-    setUser(key);
-
-    navigate('/basic');
+    navigate('/app');
   };
 
   return (
     <>
       <h1>Login</h1>
-      <p>Logged in as {user}</p>
-      <input onChange={(event) => setKey(event.target.value)} />
+      <p>Logged in as {apiKey}</p>
+      <input value={key} onChange={(event) => setKey(event.target.value)} />
       <button onClick={() => onSubmit()}>
         Login
       </button>

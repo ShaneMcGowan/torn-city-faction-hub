@@ -1,11 +1,11 @@
-import { useGetBasic } from '../api/basic/queries/useBasic'
-import { useUser } from '../hooks/useUser';
+import { useGetBasic } from '../../api/basic/queries/useBasic'
+import { useApiKey } from '../../hooks/useApiKey';
 
-const PageBasic = () => {
+const PageFactionBasic = () => {
 
-  const { user } = useUser();
+  const { apiKey } = useApiKey();
 
-  const getBasic = useGetBasic({ user });
+  const getBasic = useGetBasic({ apiKey });
 
   console.log(getBasic.error);
 
@@ -25,4 +25,4 @@ const PageBasic = () => {
   )
 }
 
-export default PageBasic
+export default PageFactionBasic

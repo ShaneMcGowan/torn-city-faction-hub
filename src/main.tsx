@@ -1,12 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import PageHome from './pages/Home.tsx'
 import { BrowserRouter, Route, Routes } from "react-router"
-import PageLogin from './pages/Login.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import PageBasic from './pages/Basic.tsx'
-import { UserProvider } from './context/user-context.tsx'
+import PageFactionBasic from './pages/faction/Basic.tsx'
+import PageFactionMembers from './pages/faction/Members.tsx'
+import LayoutUnauthenticated from './layouts/Unauthenticated.tsx'
+import LayoutAuthenticated from './layouts/Authenticated.tsx'
+import PageLogin from './pages/Login.tsx'
+import PageHome from './pages/Home.tsx'
+import { ApiKeyProvider } from './context/api-key-context.tsx'
 
 const queryClient = new QueryClient()
 
@@ -14,15 +17,20 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <UserProvider>
+      <ApiKeyProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<PageHome />} />
-            <Route path="/login" element={<PageLogin />} />
-            <Route path="/basic" element={<PageBasic />} />
+            <Route path="/" element={<LayoutUnauthenticated />}>
+              <Route path="" element={<PageHome />} />
+              <Route path="login" element={<PageLogin />} />
+            </Route>
+            <Route path="/app" element={<LayoutAuthenticated />} >
+              <Route path="basic" element={<PageFactionBasic />} />
+              <Route path="members" element={<PageFactionMembers />} />
+            </Route>
           </Routes>
         </BrowserRouter>
-      </UserProvider>
+      </ApiKeyProvider>
     </QueryClientProvider>
   </StrictMode>,
 )

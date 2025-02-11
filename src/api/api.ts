@@ -1,9 +1,9 @@
 const BASE_URL: string = 'https://api.torn.com/v2'
 
-async function get<T>(path: string, user: string): Promise<T> {
+async function get<T>(path: string, apiKey: string): Promise<T> {
 
   const headers = new Headers();
-  headers.append("Authorization", `ApiKey ${user}`)
+  headers.append("Authorization", `ApiKey ${apiKey}`)
 
   const response = await fetch(`${BASE_URL}/${path}`, {
     headers: headers
