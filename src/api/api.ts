@@ -1,5 +1,14 @@
 const BASE_URL: string = 'https://api.torn.com/v2'
 
+type ErrorResponse = {
+  error?: {
+    code: number;
+    error: string;
+  };
+}
+
+export type BaseResponse = ErrorResponse;
+
 async function get<T>(path: string, apiKey: string): Promise<T> {
 
   const headers = new Headers();

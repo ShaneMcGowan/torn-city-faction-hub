@@ -10,6 +10,7 @@ import LayoutAuthenticated from './layouts/Authenticated.tsx'
 import PageLogin from './pages/Login.tsx'
 import PageHome from './pages/Home.tsx'
 import { ApiKeyProvider } from './context/api-key-context.tsx'
+import PageFactionAttacks from './pages/faction/Attacks.tsx'
 
 const queryClient = new QueryClient()
 
@@ -27,6 +28,7 @@ root.render(
             <Route path="/app" element={<LayoutAuthenticated />} >
               <Route path="basic" element={<PageFactionBasic />} />
               <Route path="members" element={<PageFactionMembers />} />
+              <Route path="attacks" element={<PageFactionAttacks />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -1,14 +1,5 @@
 import { FactionMember } from "../../../model/faction/faction-member.model";
-import { get } from "../../api";
-
-type ErrorResponse = {
-  error?: {
-    code: number;
-    error: string;
-  };
-}
-
-export type BaseResponse = ErrorResponse;
+import { BaseResponse, get } from "../../api";
 
 export type FactionMemberResponse = BaseResponse & {
   members: FactionMember[];
